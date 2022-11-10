@@ -55,14 +55,12 @@ public class HomePage extends AbstractPage
     }
 
     public void checkMonthTravelButton() {
-        driver.findElement(calendarCheckInButton).click();
+        if(!driver.findElement(nextMonthCalendarButton).isDisplayed()) {
+            driver.findElement(calendarCheckInButton).click();
+        }
         String month;
         do {
             month = driver.findElement(nameSecondCalendarMonth).getText();
-            LOGGER.info(month);
-            if(!driver.findElement(nextMonthCalendarButton).isDisplayed()) {
-                driver.findElement(calendarCheckInButton).click();
-            }
             driver.findElement(nextMonthCalendarButton).click();
         } while(!time.getMonthCalendarPage(month));
     }
