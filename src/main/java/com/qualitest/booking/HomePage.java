@@ -49,7 +49,7 @@ public class HomePage extends AbstractPage
 
         for(WebElement location: listDestinyButtons) {
             if(location.getText().equalsIgnoreCase(destiny)) {
-                location.findElement(By.xpath("/span[@class='search_hl_name']")).click();
+                location.click();
             }
         }
     }
