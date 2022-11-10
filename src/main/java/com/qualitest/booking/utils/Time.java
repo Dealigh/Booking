@@ -23,13 +23,13 @@ public class Time {
         calendar.add(Calendar.MONTH, +2);
     }
 
-    public String getDateCheckInDate() {
+    public String getDateCheckIn() {
         setCalendarTravel();
         Date date = calendar.getTime();
         return dateToString(date);
     }
 
-    public String getDateCheckOutDate() {
+    public String getDateCheckOut() {
         setCalendarTravel();
         calendar.add(Calendar.DAY_OF_MONTH, +10);
         Date date = calendar.getTime();

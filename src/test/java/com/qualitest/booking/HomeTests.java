@@ -22,6 +22,7 @@ public class HomeTests extends AbstractTest
         homePage.checkMonthTravelButton();
         homePage.selectDateCheckInButton();
         homePage.selectDateCheckOutButton();
+
         DestinyPage destinyPage = homePage.clickSubmitButton();
         destinyPage.closeSignInWindow();
 

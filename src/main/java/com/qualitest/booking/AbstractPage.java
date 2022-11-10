@@ -1,13 +1,10 @@
 package com.qualitest.booking;
 
 import com.qualitest.booking.utils.Time;
-import com.qualitest.booking.utils.Utils;
-import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.WebDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.sql.Driver;
 
 public abstract class AbstractPage {
 

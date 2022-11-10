@@ -1,8 +1,5 @@
 package com.qualitest.booking;
 
-import com.qualitest.booking.utils.Utils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,26 +15,26 @@ import java.util.List;
  */
 public class HomePage extends AbstractPage
 {
-    private By searchDestinyInput = By.xpath("//*[@type='search']");
 
+    private final By searchDestinyInput = By.xpath("//*[@type='search']");
 
-    private By calendarCheckInButton = By.xpath("//*[@data-mode='checkin']");
+    private final By calendarCheckInButton = By.xpath("//*[@data-mode='checkin']");
 
-    private By calendarCheckOutButton = By.xpath("//*[@data-mode='checkout']");
+    private final By calendarCheckOutButton = By.xpath("//*[@data-mode='checkout']");
 
-    private By nextMonthCalendarButton = By.xpath("//*[@data-bui-ref='calendar-next']");
+    private final By nextMonthCalendarButton = By.xpath("//*[@data-bui-ref='calendar-next']");
 
-    private By nameFirstCalendarMonth = By.xpath("(//*[@class='bui-calendar__month'])[1]");
+    private final By nameFirstCalendarMonth = By.xpath("(//*[@class='bui-calendar__month'])[1]");
 
-    private By nameSecondCalendarMonth = By.xpath("(//*[@class='bui-calendar__month'])[2]");
+    private final By nameSecondCalendarMonth = By.xpath("(//*[@class='bui-calendar__month'])[2]");
 
-    private String checkinDate = time.getDateCheckInDate();
-    private By dateCheckInButton = By.xpath("//*[@data-date='" + checkinDate + "']");
+    private final String checkinDate = time.getDateCheckIn();
+    private final By dateCheckInButton = By.xpath("//*[@data-date='" + checkinDate + "']");
 
-    private String checkoutDate = time.getDateCheckOutDate();
-    private By dateCheckOutButton = By.xpath("//*[@data-date='" + checkoutDate + "']");
+    private final String checkoutDate = time.getDateCheckOut();
+    private final By dateCheckOutButton = By.xpath("//*[@data-date='" + checkoutDate + "']");
 
-    private By submitTravelButton = By.cssSelector("button[type='submit']");
+    private final By submitTravelButton = By.cssSelector("button[type='submit']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -48,13 +45,11 @@ public class HomePage extends AbstractPage
         driver.findElement(searchDestinyInput).sendKeys(input);
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@role='option']")));
-        List<WebElement> listDestinyButtons = driver.findElements(By.xpath("//li[@role='option']"));
+        List<WebElement> listDestinyButtons = driver.findElements(By.xpath("/span[@class='search_hl_name']"));
 
         for(WebElement location: listDestinyButtons) {
-            By linkLocation = By.xpath("//li[@role='option']/*/span[@class='search_hl_name']");
-            String city = driver.findElement(linkLocation).getText();
-            if(city.equalsIgnoreCase(destiny)) {
-                driver.findElement(linkLocation).click();
+            if(location.getText().equalsIgnoreCase(destiny)) {
+                location.findElement(By.xpath("/span[@class='search_hl_name']")).click();
             }
         }
     }
